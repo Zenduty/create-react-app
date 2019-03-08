@@ -59,6 +59,8 @@ const isInteractive = process.stdout.isTTY;
 if (!checkRequiredFiles([
   paths.dashboardHtml,
   paths.dashboardIndexJs,
+  paths.landingpageHtml,
+  paths.landingpageIndexJs
 ])) {
   process.exit(1);
 }
