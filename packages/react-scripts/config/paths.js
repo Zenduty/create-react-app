@@ -101,8 +101,11 @@ module.exports = {
   appPath: resolveApp('.'),
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
-  appHtml: resolveApp('public/index.html'),
-  appIndexJs: resolveModule(resolveApp, 'src/index'),
+  // Zenduty: Remove AppHtml and AppIndexJs to include multi-app paths
+  dashboardHtml: resolveApp("public/dashboard.html"),
+  dashboardIndexJs: resolveModule(resolveApp, "src/dashboard/index"),
+  landingpageHtml: resolveApp("public/landingpage.html"),
+  landingpageIndexJs: resolveModule(resolveApp, "src/landingpage/index"),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   appTsConfig: resolveApp('tsconfig.json'),
