@@ -531,25 +531,22 @@ module.exports = function(webpackEnv) {
         Object.assign(
           {},
           {
-            inject: true,
-            template: paths.appHtml,
+            template: paths.dashboardHtml,
+            filename: "dashboard/index.html",
+            chunks: ["dashboard"]
           },
-          isEnvProduction
-            ? {
-                minify: {
-                  removeComments: true,
-                  collapseWhitespace: true,
-                  removeRedundantAttributes: true,
-                  useShortDoctype: true,
-                  removeEmptyAttributes: true,
-                  removeStyleLinkTypeAttributes: true,
-                  keepClosingSlash: true,
-                  minifyJS: true,
-                  minifyCSS: true,
-                  minifyURLs: true,
-                },
-              }
-            : undefined
+          isEnvProduction ? HtmlWebpackPluginProdConfig : undefined
+        )
+      ),
+      new HtmlWebpackPlugin(
+        Object.assign(
+          {},
+          {
+            template: paths.landingpageHtml,
+            filename: "landingpage/index.html",
+            chunks: ["landingpage"]
+          },
+          isEnvProduction ? HtmlWebpackPluginProdConfig : undefined
         )
       ),
       // Inlines the webpack runtime script. This script is too small to warrant
