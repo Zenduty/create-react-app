@@ -9,13 +9,13 @@ _The Zenduty client also utilizes [craco](https://github.com/sharegate/craco) fo
 
 ## Overview
 
-In order to include any new apps, we must modify the webpack settings that resides in the `packages/react-scripts/` folder.
+In order to include any new apps, we must modify the webpack settings that reside in the `packages/react-scripts/` folder.
 
 ## Modifications
 
 The following modifications have been made to accomodate the Zenduty clients.
 
-Do not forget to add inline comments in the code also to notate the modifications.
+_Do not forget to add inline comments in the code also to notate the modifications._
 
 ### packages/react-scripts/config/paths.js
 
@@ -46,12 +46,12 @@ Follow these steps to add a new app for development and building:
 
 #### Changes inside this repo's `packages/react-scripts/config/paths.js`
 
-4. **Create path references:** Inside `packages/react-scripts/paths.js`, add `newappJs` and `newappHtml` props to `module.exports` to specify the location of the respective app's JS and HTML files. (_Note: There are 3 `module.exports` definitions. You only need to modify the one which has the path references to the other Zenduty client apps already._)**
+4. **Create path references:** Add `newappJs` and `newappHtml` props to `module.exports` to specify the location of the new app's JS and HTML files. (_Note: There are 3 `module.exports` definitions. You only need to modify the one which has the path references to the other Zenduty client apps already._)
 
 #### Changes inside this repo's `packages/react-scripts/config/webpack.config.js`
 
-5. **Add app entry:** Add the new app's js file to the webpack `entry` prop. You can refer to the other members of this prop and modify the content appropriately to refer to the new app's JS path reference. This will allow webpack to source and build the JS code of your new app.
-6. **Add app HTML plugin:** Create a new `HtmlWebpackPlugin` in the webpack `plugins` prop. You can copy the contents of any other HTML webpack plugin and modify the content appropriately to refer to the new app's HTML path reference.
+5. **Add app entry:** Add the new app's js reference to the webpack `entry` prop. You can refer to the other members of this prop and modify the content appropriately to refer to the new app's JS path. This will allow webpack to source and build the JS code of your new app.
+6. **Add app HTML plugin:** Create a new `HtmlWebpackPlugin` in the webpack `plugins` prop. You can copy the contents of any other HTML webpack plugin and modify the content appropriately to refer to the new app's HTML path. This will allow webpack to build an HTML output that sources the new app's JS.
 
 #### Publishing react-scripts to npm
 
@@ -66,10 +66,13 @@ Follow these steps to add a new app for development and building:
 
 You are good to go!
 
+---
 
 ---
 
 Original Readme from CRA below
+
+---
 
 ---
 
