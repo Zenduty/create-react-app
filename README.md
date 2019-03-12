@@ -1,3 +1,78 @@
+# Zenduty CRA
+
+Create React App customized for the following Zenduty clients:
+
+- Landing Page
+- Dashboard (Main App)
+
+_The Zenduty client also utilizes [craco](https://github.com/sharegate/craco) for easy modifications to the CRA without actually changing code here. Always check for solutions in craco before modifying this CRA._
+
+## Overview
+
+In order to include any new apps, we must modify the webpack settings that resides in the `packages/react-scripts/` folder.
+
+## Modifications
+
+The following modifications have been made to accomodate the Zenduty clients.
+
+Do not forget to add inline comments in the code also to notate the modifications.
+
+### packages/react-scripts/config/paths.js
+
+- Added `dashboardHtml`, `dashboardIndexJs`, `landingpageHtml`, `landingpageIndexJs` props to `module.exports` to specify the location of the respective app's JS and HTML files.
+
+### packages/react-scripts/config/webpack.config.js
+
+- Modified `entry` webpack config to support multiple apps.
+- Modified `output.filename` to support unique file names for multiple apps' outputs in development mode.
+- Rewrote `HtmlWebpackPlugin` plugins to produce independent HTML outputs for each app.
+
+## Customizing
+
+Customizing the CRA is equivalent to customizing a webpack config. Refer to the following for any config related queries:
+
+- [Create React App docs](https://facebook.github.io/create-react-app/)
+- [Webpack docs](https://webpack.js.org/concepts)
+
+### Adding a new React app
+
+Follow these steps to add a new app for development and building:
+
+#### Changes inside the Django client
+
+1. **Create new folder:** Create a new folder by the app's name, e.g. `newapp`, in the `client/src/` folder of the Django app.
+2. **Create entry js:** Create an `index.js` file inside the new folder. Refer to `client/src/dashboard/index.js` for the content.
+3. **Create entry html:** Create a `newapp.html` file inside the `client/public/` folder. Refer to `client/public/dashboard.html` for the content.
+
+#### Changes inside this repo's `packages/react-scripts/config/paths.js`
+
+4. **Create path references:** Inside `packages/react-scripts/paths.js`, add `newappJs` and `newappHtml` props to `module.exports` to specify the location of the respective app's JS and HTML files. (_Note: There are 3 `module.exports` definitions. You only need to modify the one which has the path references to the other Zenduty client apps already._)**
+
+#### Changes inside this repo's `packages/react-scripts/config/webpack.config.js`
+
+5. **Add app entry:** Add the new app's js file to the webpack `entry` prop. You can refer to the other members of this prop and modify the content appropriately to refer to the new app's JS path reference. This will allow webpack to source and build the JS code of your new app.
+6. **Add app HTML plugin:** Create a new `HtmlWebpackPlugin` in the webpack `plugins` prop. You can copy the contents of any other HTML webpack plugin and modify the content appropriately to refer to the new app's HTML path reference.
+
+#### Publishing react-scripts to npm
+
+7. Bump up the package version inside `packages/react-scripts/package.json`. E.g. 2.1.9 --> 2.1.10
+8. Commit the code changes.
+9. cd to the `packages/react-scripts/` inside your terminal and publish the package to npm.
+
+#### Update the Django client
+
+10. Update the package version of `zenduty-react-scripts` inside `client/package.json` to the new bumped up version.
+11. Update the npm packages with `npm i`.
+
+You are good to go!
+
+
+---
+
+Original Readme from CRA below
+
+---
+
 # Create React App [![Build Status](https://travis-ci.org/facebook/create-react-app.svg?branch=master)](https://travis-ci.org/facebook/create-react-app) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/facebook/create-react-app/pulls)
 
 Create React apps with no build configuration.
