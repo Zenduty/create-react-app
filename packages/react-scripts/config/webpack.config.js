@@ -532,7 +532,7 @@ module.exports = function(webpackEnv) {
           {},
           {
             template: paths.dashboardHtml,
-            filename: "dashboard/index.html",
+            // filename: "dashboard/index.html",
             chunks: ["dashboard"]
           },
           isEnvProduction ? HtmlWebpackPluginProdConfig : undefined
