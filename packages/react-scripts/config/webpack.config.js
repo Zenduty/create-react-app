@@ -532,7 +532,9 @@ module.exports = function(webpackEnv) {
           {},
           {
             template: paths.dashboardHtml,
-            // filename: "dashboard/index.html",
+            // during prod build, create a separate folder, while during dev
+            // keep dashboard as the main entry app
+            filename: isEnvProduction ? "dashboard/index.html" : "index.html",
             chunks: ["dashboard"]
           },
           isEnvProduction ? HtmlWebpackPluginProdConfig : undefined
